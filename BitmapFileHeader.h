@@ -16,6 +16,6 @@ struct BitmapFileHeader
 
 	std::int32_t fileSize; // it must be 32 bits object of data(info will be stored on 32bits)
 	std::int32_t reserved{0}; // we are not going to use it
-	std::int32_t dataOffset; // that will be set later,
+	std::int32_t dataOffSet; // that will be set later,
 
 };
