@@ -1,6 +1,6 @@
 #include "Bitmap.h"
 
-Bitmap::Bitmap(int width, int height) : mWidth(width), mHeight(height) {}
+Bitmap::Bitmap(int width, int height) : mWidth(width), mHeight(height), mptrPixels(new uint8_t[width * height * 3]){}
 
 bool Bitmap::Write(std::string fileName)
 {
