@@ -1,2 +1,6 @@
 ﻿  Bitmap.cpp
+C:\Users\MyPC\projects\fractal-image\Bitmap.cpp(2,1): warning C4103: alignment changed after including header, may be due to missing #pragma pack(pop)
+  main.cpp
+C:\Users\MyPC\projects\fractal-image\main.cpp(1,1): warning C4103: alignment changed after including header, may be due to missing #pragma pack(pop)
+  Generating Code...
   fractal-image.vcxproj -> C:\Users\MyPC\projects\fractal-image\Debug\fractal-image.exe
