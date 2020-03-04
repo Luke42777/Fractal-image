@@ -1,8 +1,6 @@
 #pragma once
 #include <cstdint>
 
-using namespace std;
-
 #pragma pack(2)/*We use pragma because we need the data in  our program's memory to correspond to the format of a bitmap file. 
 This requires the data in the struct to be laid out in a particular way, with the filesize member immediately after the header member. 
 By default, the compiler will lay out the data in the most efficient format and insert some padding between these two members.
@@ -16,8 +14,8 @@ struct BitmapFileHeader
 	//first thing we gonna need are 2 bytes containg a letters 'B' and 'M' so that the system knows is bitmap file
 	char header[2]{ 'B','M' }; // that goes on the top of the file
 
-	int32_t fileSize; // it must be 32 bits object of data(info will be stored on 32bits)
-	int32_t reserved{0}; // we are not going to use it
-	int32_t dataOffset; // that will be set later,
+	std::int32_t fileSize; // it must be 32 bits object of data(info will be stored on 32bits)
+	std::int32_t reserved{0}; // we are not going to use it
+	std::int32_t dataOffset; // that will be set later,
 
 };
