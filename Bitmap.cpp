@@ -2,7 +2,16 @@
 #include "BitmapInfoHeader.h"
 #include "BitmapFileHeader.h"
 
-Bitmap::Bitmap(int width, int height) : mWidth(width), mHeight(height), mptrPixels(new uint8_t[width * height * 3]{}) {}
+Bitmap::Bitmap(int width, int height) : mWidth(width), mHeight(height)
+{
+	mptrPixels = new uint8_t[width * height * 3]{};
+}
+
+Bitmap::~Bitmap()
+{
+	delete[] mptrPixels;
+}
+
 
 bool Bitmap::Write(std::string fileName)
 {
