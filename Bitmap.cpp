@@ -45,12 +45,30 @@ bool Bitmap::Write(std::string fileName)
 	}
 	file.close();
 
-
 	return true;
 }
 
 void Bitmap::SetPixel(int x, int y, uint8_t red, uint8_t green, uint8_t blue)
 {
+	auto pixel = mptrPixels;
+	pixel += (y*3)* mWidth + x * 3;
+	/* they are in reverse order because bitmap use little-endian format
+	 Little-endian is an order in which the "little end" (least significant value in the sequence) is stored first.
+	 Least significant value is represented by blue
+	*/
+	pixel[0] = blue;
+	pixel[1] = green;
+	pixel[2] = red;
 
+}
 
+void Bitmap::FillScreen(int width, int height,uint8_t red, uint8_t green, uint8_t blue)
+{
+	for (int x = 0; x < width; x++)
+	{
+		for (int y = 0; y < height; y++)
+		{
+			SetPixel(x, y, red, green, blue);
+		}
+	}
 }
