@@ -1,7 +1,8 @@
 #pragma once
 #include <cstdint>
 
-#pragma pack(2)/*We use pragma because we need the data in  our program's memory to correspond to the format of a bitmap file. 
+#pragma pack(2)
+/*We use pragma because we need the data in  our program's memory to correspond to the format of a bitmap file. 
 This requires the data in the struct to be laid out in a particular way, with the filesize member immediately after the header member. 
 By default, the compiler will lay out the data in the most efficient format and insert some padding between these two members.
 if we accept this, then the bitmap files we produce will not be correct and we will either get weird images or an error when we try to view them.

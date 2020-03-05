@@ -1,10 +1,11 @@
-#include "BitmapFileHeader.h"
-#include "BitmapInfoHeader.h"
+#include "Bitmap.h"
 #include <iostream>
 
 using namespace std;
 
 int main()
 {
-	cout << "Helo world";
+	Bitmap bmap(800, 600);
+	bmap.Write("bitmap.bmp");
+	cout << "Finished";
 }

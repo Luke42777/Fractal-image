@@ -1,15 +1,20 @@
 #include "Bitmap.h"
 #include "BitmapInfoHeader.h"
 #include "BitmapFileHeader.h"
+#include <cassert> 
+#include <fstream>
+
+using namespace std;
 
 Bitmap::Bitmap(int width, int height) : mWidth(width), mHeight(height)
 {
 	mptrPixels = new uint8_t[width * height * 3]{};
+	assert(mptrPixels && "Bitmap constructor: cannot allocate memeory");
 }
 
 Bitmap::~Bitmap()
 {
-	delete[] mptrPixels;
+	delete  [] mptrPixels;
 }
 
 
@@ -23,8 +28,25 @@ bool Bitmap::Write(std::string fileName)
 	infoHeader.width = mWidth;
 	infoHeader.height = mHeight;
 
-	return true;
+	ofstream file;
+	file.open(fileName, ios::out | ios::binary);
+	if (!file)
+	{
+		return false;
+	}
 
+	file.write((const char*)&fileHeader, sizeof(fileHeader));
+	file.write((const char*)&infoHeader, sizeof(infoHeader));
+	file.write((const char*)mptrPixels, mWidth * mHeight * 3);
+
+	if (!file)
+	{
+		return false;
+	}
+	file.close();
+
+
+	return true;
 }
 
 void Bitmap::SetPixel(int x, int y, uint8_t red, uint8_t green, uint8_t blue)
