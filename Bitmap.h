@@ -9,7 +9,7 @@ public:
 	~Bitmap();
 	bool Write(std::string fileName); // after creating bitmap we want to write it
 	void SetPixel(int x, int y, uint8_t red, uint8_t green, uint8_t blue);
-	void FillScreen(int width, int height, uint8_t red, uint8_t green, uint8_t blue);
+	
 
 
 

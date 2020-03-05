@@ -62,13 +62,6 @@ void Bitmap::SetPixel(int x, int y, uint8_t red, uint8_t green, uint8_t blue)
 
 }
 
-void Bitmap::FillScreen(int width, int height,uint8_t red, uint8_t green, uint8_t blue)
-{
-	for (int x = 0; x < width; x++)
-	{
-		for (int y = 0; y < height; y++)
-		{
-			SetPixel(x, y, red, green, blue);
-		}
-	}
-}
+
+	
+
