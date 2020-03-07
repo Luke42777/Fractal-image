@@ -18,7 +18,7 @@ int main()
 		{
 			//the fractal algorithm would expect values from -1 to 1( not in the coordinate system of the bitmap
 			//but it expects x and y to range from minus 1 to 1 if we want to be able to see fractal
-			double xFractal = x - WIDTH / 2;
+			double xFractal = (x - WIDTH / 2.0) / (WIDTH / 2.0);
 			//double yFractal = y - HEIGHT / 2;
 
 			if (xFractal < min) { min = xFractal; }
