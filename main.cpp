@@ -27,8 +27,6 @@ int main()
 			//and 'min' will end up being equal to the most minimum value of 'xFractal' that we encountered
 			if (xFractal > max) { max = xFractal; }
 
-			if (yFractal < min) { min = yFractal; }
-			if (yFractal > max) { max = yFractal; }
 		}
 		
 	}
