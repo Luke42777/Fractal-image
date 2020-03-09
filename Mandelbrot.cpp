@@ -3,10 +3,9 @@
 
 using namespace  std;
 
-extern const int WIDTH;
-extern const int HEIGHT;
 
- int Mandelbrot::GetIterations(int x, int y)
+
+ int Mandelbrot::GetIterations(double x, double y)
 {
 	complex <double> z = 0;
 	complex <double> c(x, y);
@@ -18,13 +17,13 @@ extern const int HEIGHT;
 	//and we are going to see how many loops we have to do before number starts to shoot to infinity
 	while (iterations < MAX_ITERATIONS)
 	{
-		z = z * z + c;
-		//there is also a notion of abolute value of complex numbers or (magnitude)
-		if (abs(z) > 2)
+		z = z * z + c;//for some numbers this will never exceeed 2(these numbers is what we call a Mandelbrot set)
+		if(abs(z) > 2)// some values z = z * z + c will exceed 2
 		{
 			break;
 		}
+		iterations++;
 	}
 
-	return 0;
+	return iterations;//we gonna return a number of iterations we have to do, that could be MAX_ITERATIONS
 }

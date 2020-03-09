@@ -1,31 +1,44 @@
 #include "Bitmap.h"
 #include <iostream>
+#include "Mandelbrot.h"
+#include <cstdint>
+
 
 using namespace std;
 
-const int WIDTH = 800;
-const int HEIGHT = 600;
+
 
 int main()
 {
+	int  const WIDTH = 800;
+	int const HEIGHT = 600;
+
 	Bitmap bmap(WIDTH, HEIGHT); 
 
 	double min = 999999;
 	double max = -999999;
-	for (int x = 0; x < WIDTH; x++)
+	for (int y = 0; y < HEIGHT; y++)
 	{
-		for (int y = 0; y < HEIGHT; y++)
+		for (int x = 0; x < WIDTH; x++)
 		{
 			//the fractal algorithm would expect values from -1 to 1( not in the coordinate system of the bitmap
 			//but it expects x and y to range from minus 1 to 1 if we want to be able to see fractal
-			double xFractal = (x - WIDTH / 2.0) / (WIDTH / 2.0);
-			double yFractal = (y - HEIGHT / 2) / (HEIGHT / 2.0);
+			double xFractal = (x - WIDTH / 2) * 2.0/WIDTH ;
+			double yFractal = (y - HEIGHT / 2) * 2.0/HEIGHT;
 
-			if (xFractal < min) { min = xFractal; }
-			//whenever we encounter a value of 'xFractal' to be less then current value
-			//we will set 'min' equal to that value
-			//and 'min' will end up being equal to the most minimum value of 'xFractal' that we encountered
-			if (xFractal > max) { max = xFractal; }
+			int iterations = Mandelbrot::GetIterations(xFractal, yFractal);
+			uint8_t red = (uint8_t)(256 * (double)iterations / Mandelbrot::MAX_ITERATIONS);
+
+			bmap.SetPixel(x, y, red, red, red);
+
+			if (red < min) 
+			{ 
+				min = red;
+			}
+			if (red > max) 
+			{ 
+				max = red; 
+			}
 
 		}
 		
