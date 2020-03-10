@@ -23,21 +23,22 @@ int main()
 		{
 			//the fractal algorithm would expect values from -1 to 1( not in the coordinate system of the bitmap
 			//but it expects x and y to range from minus 1 to 1 if we want to be able to see fractal
-			double xFractal = (x - WIDTH / 2) * 2.0/WIDTH ;
-			double yFractal = (y - HEIGHT / 2) * 2.0/HEIGHT;
+			double xFractal = (x - WIDTH / 2 - 150) / (HEIGHT / 2.0) ;
+			double yFractal = (y - HEIGHT / 2) / (HEIGHT / 2.0);
 
 			int iterations = Mandelbrot::GetIterations(xFractal, yFractal);
-			uint8_t red = (uint8_t)(256 * (double)iterations / Mandelbrot::MAX_ITERATIONS);
+			uint8_t color = (uint8_t)(256 * (double)iterations / Mandelbrot::MAX_ITERATIONS);
+			color = color * color * color;
 
-			bmap.SetPixel(x, y, red, red, red);
+			bmap.SetPixel(x, y, 0, color, 0);
 
-			if (red < min) 
+			if (color < min) 
 			{ 
-				min = red;
+				min = color;
 			}
-			if (red > max) 
+			if (color > max) 
 			{ 
-				max = red; 
+				max = color; 
 			}
 
 		}
