@@ -34,6 +34,8 @@ int main()
 
 			int iterations = Mandelbrot::GetIterations(xFractal, yFractal);
 			histogram[iterations]++;
+
+			
 			uint8_t color = (uint8_t)(256 * (double)iterations / Mandelbrot::MAX_ITERATIONS);
 			color = color * color * color;
 
@@ -51,7 +53,13 @@ int main()
 		}
 		
 	}
-
+	int allCountOfIterations = 0;
+	for (int i = 0; i < Mandelbrot::MAX_ITERATIONS + 1; i++)
+	{
+		cout << "histogram: [" << i << "]" << histogram[i] << endl;
+		allCountOfIterations += histogram[i];
+	}
+	cout << allCountOfIterations << endl;
 	cout << "min: " << min << ", max: " << max << endl;
 	bmap.Write("bitmap.bmp");
 	cout << "Finished";
