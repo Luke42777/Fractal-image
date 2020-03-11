@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Mandelbrot.h"
 #include <cstdint>
+#include <memory>
 
 
 using namespace std;
@@ -17,6 +18,11 @@ int main()
 
 	double min = 999999;
 	double max = -999999;
+
+	int* histogram = new int[Mandelbrot::MAX_ITERATIONS + 1]{};
+	//this will be our color histogram
+	//we need to know how many times certain iterations occours
+	//at the beginning is set to Zero
 	for (int y = 0; y < HEIGHT; y++)
 	{
 		for (int x = 0; x < WIDTH; x++)
@@ -27,6 +33,7 @@ int main()
 			double yFractal = (y - HEIGHT / 2) / (HEIGHT / 2.0);
 
 			int iterations = Mandelbrot::GetIterations(xFractal, yFractal);
+			histogram[iterations]++;
 			uint8_t color = (uint8_t)(256 * (double)iterations / Mandelbrot::MAX_ITERATIONS);
 			color = color * color * color;
 
@@ -48,4 +55,5 @@ int main()
 	cout << "min: " << min << ", max: " << max << endl;
 	bmap.Write("bitmap.bmp");
 	cout << "Finished";
+	delete[] histogram;
 }
