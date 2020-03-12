@@ -14,7 +14,7 @@ int main()
 	int  const WIDTH = 800;
 	int const HEIGHT = 600;
 
-	Bitmap bmap(WIDTH, HEIGHT); 
+	Bitmap bmap(WIDTH, HEIGHT);
 
 	double min = 999999;
 	double max = -999999;
@@ -23,6 +23,9 @@ int main()
 	//this will be our color histogram
 	//we need to know how many times certain iterations occours
 	//at the beginning is set to Zero
+
+	int* ptr_Fractal = new int[HEIGHT*WIDTH]{};//this array will store informations about how many iterations has every single pixel
+
 	for (int y = 0; y < HEIGHT; y++)
 	{
 		for (int x = 0; x < WIDTH; x++)
@@ -38,6 +41,7 @@ int main()
 				histogram[iterations]++;
 			}
 
+			ptr_Fractal[y*WIDTH +x] = iterations;
 			
 			uint8_t color = (uint8_t)(256 * (double)iterations / Mandelbrot::MAX_ITERATIONS);
 			color = color * color * color;
@@ -56,16 +60,9 @@ int main()
 		}
 		
 	}
-	int allCountOfIterations = 0;
+	int total = 0; // to improve image we need to have total number of iterations
 
-	for (int i = 0; i < Mandelbrot::MAX_ITERATIONS; i++)
-	{
-		cout << "histogram: [" << i << "]" << histogram[i] << endl;
-		allCountOfIterations += histogram[i];
-	}
-	cout << allCountOfIterations << endl;
 	
-	cout << "min: " << min << ", max: " << max << endl;
 	bmap.Write("bitmap.bmp");
 	cout << "Finished";
 	delete[] histogram;
