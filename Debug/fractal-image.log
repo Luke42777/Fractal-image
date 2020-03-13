@@ -1,2 +1,3 @@
 ﻿  main.cpp
+C:\Users\MyPC\projects\fractal-image\main.cpp(67,18): warning C4244: 'initializing': conversion from 'double' to 'uint8_t', possible loss of data
   fractal-image.vcxproj -> C:\Users\MyPC\projects\fractal-image\Debug\fractal-image.exe
