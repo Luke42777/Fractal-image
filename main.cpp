@@ -26,7 +26,7 @@ int main()
 
 	int* ptr_Fractal = new int[HEIGHT*WIDTH]{};//this array will store informations about how many iterations has every single pixel
 
-	for (int y = 0; y < HEIGHT; y++)
+	for (int y = 0; y < HEIGHT; y++) //this first nested loop simply store information we need
 	{
 		for (int x = 0; x < WIDTH; x++)
 		{
@@ -41,27 +41,36 @@ int main()
 				histogram[iterations]++;
 			}
 
-			ptr_Fractal[y*WIDTH +x] = iterations;
-			
+			ptr_Fractal[y*WIDTH +x] = iterations;	
+		}	
+	}
+	int total = 0; // to improve image we need to have total number of iterations
+	for (int i = 0; i < Mandelbrot::MAX_ITERATIONS; i++)
+	{
+		total += histogram[i];
+	}
+
+	for (int y = 0; y < HEIGHT; y++)//this second nested loop simply draw fractal
+	{
+		for (int x = 0; x < WIDTH; x++)
+		{
+			int iterations = ptr_Fractal[y * WIDTH + x];
 			uint8_t color = (uint8_t)(256 * (double)iterations / Mandelbrot::MAX_ITERATIONS);
 			color = color * color * color;
 
 			bmap.SetPixel(x, y, 0, color, 0);
 
-			if (color < min) 
-			{ 
+			if (color < min)
+			{
 				min = color;
 			}
-			if (color > max) 
-			{ 
-				max = color; 
+			if (color > max)
+			{
+				max = color;
 			}
 
 		}
-		
 	}
-	int total = 0; // to improve image we need to have total number of iterations
-
 	
 	bmap.Write("bitmap.bmp");
 	cout << "Finished";
