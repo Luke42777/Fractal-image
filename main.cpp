@@ -55,19 +55,20 @@ int main()
 		for (int x = 0; x < WIDTH; x++)
 		{
 			int iterations = ptr_Fractal[y * WIDTH + x];
-			uint8_t color = (uint8_t)(256 * (double)iterations / Mandelbrot::MAX_ITERATIONS);
-			color = color * color * color;
+	
+			double hue = 0.0; // this should be between zero and 1
 
-			bmap.SetPixel(x, y, 0, color, 0);
+			for (int i = 0; i <= iterations; i++)
+			{
+				hue += ((double)histogram[i]) / total;
+			}
 
-			if (color < min)
-			{
-				min = color;
-			}
-			if (color > max)
-			{
-				max = color;
-			}
+			uint8_t red = 0;
+			uint8_t green = hue * 255;
+			uint8_t blue = 0;
+
+
+			bmap.SetPixel(x, y, red, green, blue);
 
 		}
 	}
