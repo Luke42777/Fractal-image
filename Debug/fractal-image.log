@@ -1,3 +1,5 @@
-﻿  main.cpp
-C:\Users\MyPC\projects\fractal-image\main.cpp(67,18): warning C4244: 'initializing': conversion from 'double' to 'uint8_t', possible loss of data
+﻿  Bitmap.cpp
+  main.cpp
+C:\Users\MyPC\projects\fractal-image\main.cpp(75,17): warning C4244: '=': conversion from 'double' to 'uint8_t', possible loss of data
+  Generating Code...
   fractal-image.vcxproj -> C:\Users\MyPC\projects\fractal-image\Debug\fractal-image.exe
