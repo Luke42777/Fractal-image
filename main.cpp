@@ -4,6 +4,7 @@
 #include <cstdint>
 #include "Bitmap.h"
 #include "Mandelbrot.h"
+#include "Zoom.h"
 
 
 using namespace std;
