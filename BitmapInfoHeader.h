@@ -1,5 +1,5 @@
 #include <cstdint>
-#pragma pack(2)
+#pragma pack(push,2)
 
 struct BitmapInfoHeader
 {
@@ -16,3 +16,4 @@ struct BitmapInfoHeader
 	std::int32_t importantColors{ 0 };
 };
 
+#pragma pack(pop)
