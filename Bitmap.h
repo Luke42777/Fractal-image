@@ -1,6 +1,9 @@
 #pragma once
 #include <string>
 #include <cstdint>
+#include <memory>
+
+using namespace std;
 
 class Bitmap
 {
@@ -16,9 +19,11 @@ public:
 private:
 	int mWidth{ 0 };
 	int mHeight{ 0 };
-	uint8_t * mptrPixels = nullptr;                           //to allocate memory to store information of all our pixels
+	unique_ptr <uint8_t[]> m_pPixels{ nullptr };         //to allocate memory to store information of all our pixels
 														//,and then we want set pixels in that memory -  SetPixel
 														//and finally write it into file - Write
+
+	
 
 };
 
